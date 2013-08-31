@@ -18,12 +18,14 @@ var Benchmark = require('benchmark'),
 // sanity test
 var args = {hola: 'Hola', better: 'Better', inet: 'Internet'},
     rt = fmt(template.rssi),
+    mc = Mustache.compile(template.mustache),
     ld = lodash.template(template.lodash),
     compiled = _.template(template.lodash),
     temp = dot.template(template.dot)
 
 console.assert(rt(args) === result)
 console.assert(Mustache.render(template.mustache, args) === result)
+console.assert(mc(args) === result)
 console.assert(ld(args) === result)
 console.assert(compiled(args) === result)
 // console.assert(temp(args) === result)
@@ -31,8 +33,9 @@ console.assert(compiled(args) === result)
 // benchmark
 suite
     .add('rssi', function () { var result = rt(args) })
-    .add('mustache', function () {
+    .add('mustache (render)', function () {
         var result = Mustache.render(template.mustache, args) })
+    .add('mustache', function () { var result = mc(args) })
     .add('lodash', function () { var result = compiled(args) })
     .add('underscore', function () { var result = compiled(args) })
     .add('dot', function () { var result = temp(args) })
