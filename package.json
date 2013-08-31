@@ -1,0 +1,16 @@
+{
+    "name": "rssi-benchmark",
+    "version": "0.0.1",
+    "author": "Mark Vasilkov <mvasilkov@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:mvasilkov/rssi-benchmark.git"
+    },
+    "dependencies": {
+        "benchmark": "*",
+        "rssi": "*",
+        "underscore": "*",
+        "dot": "*"
+    },
+    "license": "WTFPL"
+}
