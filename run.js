@@ -9,22 +9,26 @@ var Benchmark = require('benchmark'),
     },
     result = fs.readFileSync(__dirname + '/result.html', enc),
     fmt = require('rssi'),
+    lodash = require('lodash'),
     _ = require('underscore'),
     dot = require('dot')
 
 // sanity test
 var args = {hola: 'Hola', better: 'Better', inet: 'Internet'},
     rt = fmt(template.rssi),
+    ld = lodash.template(template.lodash),
     compiled = _.template(template.lodash),
     temp = dot.template(template.dot)
 
 console.assert(rt(args) === result)
+console.assert(ld(args) === result)
 console.assert(compiled(args) === result)
 // console.assert(temp(args) === result)
 
 // benchmark
 suite
     .add('rssi', function () { var result = rt(args) })
+    .add('lodash', function () { var result = compiled(args) })
     .add('underscore', function () { var result = compiled(args) })
     .add('dot', function () { var result = temp(args) })
     .add('rssi2', function () { var result = rt(args) })
