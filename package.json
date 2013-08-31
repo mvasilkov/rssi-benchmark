@@ -9,6 +9,7 @@
     "dependencies": {
         "benchmark": "*",
         "rssi": "*",
+        "mustache": "*",
         "lodash": "*",
         "underscore": "*",
         "dot": "*"
